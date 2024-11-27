@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 // Configuración de la conexión a MySQL
 const connection = mysql.createConnection({
-  host: 'localhost',        // o la IP de tu servidor MySQL
+  host: 'localhost',
   user: 'root',       // tu usuario de MySQL
   password: '1234', // tu contraseña de MySQL
   database: 'sitiorecetas' // tu base de datos
@@ -30,7 +30,7 @@ connection.connect((err) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Ruta de ejemplo para obtener datos de la base de datos
-app.get('/api/datos', (req, res) => {
+app.get('/api/usuarios', (req, res) => {
   connection.query('SELECT * FROM usuarios', (err, results) => {
     if (err) {
       console.error('Error en la consulta: ', err);

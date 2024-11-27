@@ -1,0 +1,112 @@
+.navbar {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.logo {
+    height: 100%;
+    width: fit-content;
+    border-radius: 100%;
+}
+
+a.navbar-brand {
+    height: 80px;
+}
+
+div.navbar-nav,
+ul.navbar-nav {
+    margin-right: 0%;
+    margin-left: 0%;
+}
+
+form.d-flex {
+    margin-bottom: 0px;
+}
+
+a.nav-link {
+    margin-right: 8px;
+    margin-left: 4px;
+
+}
+
+div.carousel {
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+div.container-fluid {
+    display: inline;
+}
+
+section {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+
+div.carousel-inner {
+    border-radius: 20px;
+    max-height: 20rem;
+    display: flex;
+    align-items: center;
+}
+
+img.card-img-top {
+    height: 6rem;
+    width: auto;
+    border-radius: 20%;
+    margin: 0.5em;
+}
+
+.explorar-display {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+
+#order-btns {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.showtable {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+    text-align: center;
+
+}
+
+.showtable-var {
+    text-align: center;
+}
+
+img.showitem {
+    max-height: 10em;
+}
+
+.showtext {
+    margin-top: 1em;
+}
+
+footer {
+    background-color: rgb(220, 220, 220);
+    height: 15em;
+    margin-top: 3%;
+}
+
+.logofooter {
+    max-height: 10em;
+    border-radius: 60%;
+    align-self: center;
+}
+
+.cajaformulario {
+    width: 50rem;
+    max-height: 40rem;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 1rem;
+    background-color: rgb(188, 196, 195);
+}
