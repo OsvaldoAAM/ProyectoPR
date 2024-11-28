@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const express = require('express');
 const path = require('path');
 const bcrypt = require('bcryptjs');
-
+const cors = require('cors');
 const app = express();
 
 // Establece el puerto en el que el servidor escuchará
@@ -17,7 +17,10 @@ const connection = mysql.createConnection({
   database: 'sitiorecetas' // nombre de la base de datos
 });
 
-// Conexión a la base de datos
+app.use(cors());
+app.use(express.json());
+
+
 connection.connect((err) => {
   if (err) {
     console.error('Error al conectar a la base de datos: ', err);
@@ -26,7 +29,7 @@ connection.connect((err) => {
   console.log('Conexión exitosa a MySQL');
 });
 
-// Sirve los archivos estáticos (como el HTML)
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Metodos HTTPS
@@ -73,7 +76,7 @@ app.post('/usuarios', async (req, res) => {
         console.error('Error al encriptar la contraseña:', err);
         return res.status(500).send('Error al procesar la contraseña');
       }
-      
+
       const query = 'INSERT INTO usuarios (nombre, email, fecha_registro, contraseña) VALUES (?, ?, ?, ?)';
 
       // Insertar los datos del usuario en la base de datos
