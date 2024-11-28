@@ -114,22 +114,56 @@ app.post('/login', (req, res) => {
       const user = results[0];  
 
       bcrypt.compare(contraseña, user.contraseña, (err, isMatch) => {
-          if (err) {
-              console.error('Error al comparar las contraseñas:', err);
-              return res.status(500).send('Error en el servidor');
-          }
+        if (err) {
+            console.error('Error al comparar las contraseñas:', err);
+            return res.status(500).send('Error en el servidor');
+        }
 
-          if (!isMatch) {
-              return res.status(400).send('La contraseña es incorrecta.');
-          }
+        if (!isMatch) {
+            return res.status(400).send('La contraseña es incorrecta.');
+        }
 
-          // Generar un token JWT (si la autenticación es exitosa)
-          const token = jwt.sign({ id: user.id, email: user.email }, 'secreto_jwt', { expiresIn: '30d' });
+        // Generar un token JWT (ahora incluyendo el nombre del usuario)
+        const token = jwt.sign(
+            { 
+                id: user.id, 
+                nombre: user.nombre,  
+                email: user.email 
+            }, 
+            'secreto_jwt', 
+            { expiresIn: '30d' }
+        );
 
-          // Enviar el token al cliente
-          res.json({ message: 'Inicio de sesión exitoso', token: token });
-      });
+        // Enviar el token al cliente
+        res.json({ message: 'Inicio de sesión exitoso', token: token });
+    });
   });
+});
+
+
+function verificarToken(req, res, next) {
+  const token = req.headers['authorization']; // El token se envía en el encabezado "Authorization"
+
+  if (!token) {
+    return res.status(403).json({ authenticated: false });
+  }
+
+  // Verificar el token
+  jwt.verify(token, 'secreto_jwt', (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ authenticated: false });
+    }
+
+    // Si el token es válido, decodificamos la información y la pasamos al siguiente middleware
+    req.user = decoded; // Los datos del usuario están en decoded (puedes tener el nombre, id, etc.)
+    next(); // Continuamos con la ejecución
+  });
+}
+
+// Ruta protegida para verificar autenticación
+app.get('/autenticacion', verificarToken, (req, res) => {
+  // Si el token es válido, devolvemos la información del usuario
+  res.json({ authenticated: true, user: req.user });
 });
 
 
