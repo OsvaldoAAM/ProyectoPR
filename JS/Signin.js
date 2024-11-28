@@ -1,5 +1,3 @@
-ApiBase = 
-
 
 document.getElementById("formularioRegistro").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevenir que el formulario se envíe de manera tradicional

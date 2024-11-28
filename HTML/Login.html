@@ -72,36 +72,38 @@
     </nav>
 
     <section class=" d-flex justify-content-center">
-        <div class="cajaformulario p-5  ">
+        <form class="cajaformulario p-5  " id="formularioIniciarSesion">
+
             <h2 class="mb-5">
                 Iniciar sesión
             </h2>
             <div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com">
+                    <label for="ingresoCorreo" class="form-label">Correo Electronico </label>
+                    <input type="email" class="form-control" id="ingresoCorreo"
+                        placeholder="name@example.com" required>
                 </div>
-                <label for="inputPassword5" class="form-label">Password:</label>
-                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                <div>
+                    <label for="ingresoContraseña" class="form-label">Contraseña:</label>
+                <input type="password" id="ingresoContraseña" class="form-control" aria-describedby="passwordHelpBlock" required>
+                </div>
+                
                 <div class="">
-                    <button type="submit" class="btn btn-primary mb-3 mt-5 ">Confirm identity</button>
+                    <button type="submit" class="btn btn-primary mb-3 mt-5 ">Iniciar sesión</button>
                 </div>
             </div>
 
-
-
-        </div>
-
+        </form>
     </section>
 
     <footer class="d-flex justify-content-center">
-        <img src="Imagenes/logo.jpeg" alt="" class="logofooter">
+        <img src="/Imagenes/logo.jpeg" alt="" class="logofooter">
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
+        <script src="/JS/Login.js"></script>
 </body>
 
 </html>

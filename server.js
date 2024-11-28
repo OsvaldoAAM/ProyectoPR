@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 const app = express();
 
 // Establece el puerto en el que el servidor escuchará
@@ -59,7 +60,6 @@ app.post('/usuarios', async (req, res) => {
     return res.status(400).send('Todos los campos son obligatorios');
   }
 
-  // Verificar si el correo electrónico ya está registrado
   connection.query('SELECT * FROM usuarios WHERE email = ?', [email], (err, results) => {
     if (err) {
       console.error('Error al verificar el email:', err);
@@ -70,7 +70,6 @@ app.post('/usuarios', async (req, res) => {
       return res.status(400).send('El correo electrónico ya está registrado');
     }
 
-    // Si el correo no está registrado, encriptar la contraseña
     bcrypt.hash(contraseña, 10, (err, hashedPassword) => {
       if (err) {
         console.error('Error al encriptar la contraseña:', err);
@@ -79,7 +78,6 @@ app.post('/usuarios', async (req, res) => {
 
       const query = 'INSERT INTO usuarios (nombre, email, fecha_registro, contraseña) VALUES (?, ?, ?, ?)';
 
-      // Insertar los datos del usuario en la base de datos
       connection.query(query, [nombre, email, fecha_registro, hashedPassword], (err, results) => {
         if (err) {
           console.error('Error al insertar el usuario:', err);
@@ -88,6 +86,49 @@ app.post('/usuarios', async (req, res) => {
         res.status(201).send('Usuario agregado');
       });
     });
+  });
+});
+
+// Ruta para iniciar sesión
+app.post('/login', (req, res) => {
+  const { email, contraseña } = req.body;
+
+  if (!email || !contraseña) {
+      return res.status(400).send('Por favor, ingrese ambos campos (email y contraseña).');
+  }
+
+  // Buscar el usuario por el email
+  const query = 'SELECT * FROM usuarios WHERE email = ?';
+  connection.query(query, [email], (err, results) => {
+      if (err) {
+          console.error('Error en la consulta a la base de datos:', err);
+          return res.status(500).send('Error en el servidor');
+      }
+
+      // Verificar si el usuario existe
+      if (results.length === 0) {
+          return res.status(400).send('El correo electrónico no está registrado.');
+      }
+
+      // Comparar la contraseña proporcionada con el hash almacenado
+      const user = results[0];  
+
+      bcrypt.compare(contraseña, user.contraseña, (err, isMatch) => {
+          if (err) {
+              console.error('Error al comparar las contraseñas:', err);
+              return res.status(500).send('Error en el servidor');
+          }
+
+          if (!isMatch) {
+              return res.status(400).send('La contraseña es incorrecta.');
+          }
+
+          // Generar un token JWT (si la autenticación es exitosa)
+          const token = jwt.sign({ id: user.id, email: user.email }, 'secreto_jwt', { expiresIn: '30d' });
+
+          // Enviar el token al cliente
+          res.json({ message: 'Inicio de sesión exitoso', token: token });
+      });
   });
 });
 
