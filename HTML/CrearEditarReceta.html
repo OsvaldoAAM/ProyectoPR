@@ -81,51 +81,53 @@
 
         </div>
     </nav>
-
-    <Section>
-
-        <div class="d-flex justify-content-start">
-            Perfil de Usuario
-        </div>
-
-        <div class="d-flex align-items-center" id="bloque1">
-            <img src="/Imagenes/perfilDefault.png" alt="imgPerfil" class="mx-4" id="imgPerfilPagina">
-            <h2 id="nombreUsuario" class="mx-4"></h2>
-            <div class="container-fluid d-flex justify-content-end">
-                <a href="/HTML/CrearEditarReceta.html">Crear receta</a>
-            </div>
-        </div>
-
-        
-    
-    </Section>
     <section>
-        <div class="d-flex align-items-center justify-content-between" id="bloqueRecetas">
-            <button class="btn btn-light" id="recetasFavoritas">Recetas Favoritas</button>
-            <button class="btn btn-light" id="recetasGuardadas">Recetas guardadas</button>
-            <button class="btn btn-light" id="recetasPublicadas">Recetas publicadas</button>
-        </div>
-        <div>
-            <h3 id="encabezadoOpciones">Recetas Favoritas</h3>
-        </div>
+        <div class="d-flex justify-content-start container my-4" id="controlRecetaEditarCrear">
+            <h2 class="flex-fill">Crear una Receta</h2>
+            <span>
+                <button class="btn">Cancelar</button>
+                <button class="btn">Enviar</button>    
+            </span>
         
+        </div>
+
+        <div class="container">
+           
+            <form id="formReceta" action="#" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="nombreReceta">Nombre de la Receta</label>
+                    <input type="text" class="form-control" id="nombreReceta" placeholder="Escribe el nombre de la receta" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="ingredientes">Ingredientes</label>
+                    <textarea class="form-control" id="ingredientes" rows="4" placeholder="Escribe los ingredientes" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="instrucciones">Instrucciones</label>
+                    <textarea class="form-control" id="instrucciones" rows="4" placeholder="Escribe las instrucciones" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagenReceta">Imagen de la Receta</label>
+                    <input type="file" class="form-control" id="imagenReceta" accept="image/*">
+                    <img id="imagePreview" class="image-preview" alt="Vista previa de la imagen" style="display:none;">
+                </div>
+
+                <button type="submit" class="btn btn-custom btn-block">Crear Receta</button>
+            </form>
+
+            <div id="alertMessage" class="alert alert-success" style="display: none;"></div>
+        </div>
+
 
     </section>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="/JS/Index.js"></script>
 
-
-
-    <footer class="d-flex justify-content-center">
-        <img src="/Imagenes/logo.jpeg" alt="" class="logofooter">
-    </footer>
-
-    <script src="/JS/PerfilUsuario.js"></script>
-    <script src="/JS/Index.js" ></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
-    
 </body>
 
 </html>

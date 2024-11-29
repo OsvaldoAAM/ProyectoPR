@@ -108,3 +108,8 @@ div#bloqueRecetas{
     color: var(--colortexto1);
 }
 
+#controlRecetaEditarCrear button{
+    color: var(--colortexto1);
+    background-color: var(--colorsecundario1);
+    margin-left: 2em;
+}

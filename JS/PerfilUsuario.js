@@ -27,8 +27,31 @@ window.addEventListener('DOMContentLoaded', () => {
         console.error('Error al verificar autenticación:', error);
         mostrarNavbarNoAutenticado(); 
       });
+
+      document.getElementById("recetasFavoritas").addEventListener("click", () => {
+        let contenidoTitulo="Recetas Favoritas"
+        cambiarTitulo(contenidoTitulo)
+      } )
+
+      document.getElementById("recetasGuardadas").addEventListener("click", () => {
+        let contenidoTitulo= "Recetas Guardadas"
+        cambiarTitulo(contenidoTitulo)
+      } )
+
+      document.getElementById("recetasPublicadas").addEventListener("click", () => {
+        let contenidoTitulo="Recetas Publicadas"
+        cambiarTitulo(contenidoTitulo)
+      } )
+
+
+
+    
 })
 
 function mostrarDatosUsuario(user){
     document.getElementById('nombreUsuario').innerText = `${user.nombre}`;
+}
+
+function cambiarTitulo(contenidoTitulo){
+    document.getElementById("encabezadoOpciones").innerText= contenidoTitulo;
 }
