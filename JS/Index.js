@@ -2,7 +2,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('token'); // Obtener el token de localStorage
   
-    // Si no hay token, redirigir al login
     if (!token) {
       mostrarNavbarNoAutenticado();
       return;

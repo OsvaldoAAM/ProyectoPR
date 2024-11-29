@@ -1,33 +1,12 @@
-.navbar {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.logo {
-    height: 100%;
-    width: fit-content;
-    border-radius: 100%;
-}
-
-a.navbar-brand {
-    height: 80px;
-}
-
-div.navbar-nav,
-ul.navbar-nav {
-    margin-right: 0%;
-    margin-left: 0%;
+:root{
+    --colorsecundario1: #339594;
+    --colortexto1: #151b17; 
 }
 
 form.d-flex {
     margin-bottom: 0px;
 }
 
-a.nav-link {
-    margin-right: 8px;
-    margin-left: 4px;
-
-}
 
 div.carousel {
     margin-top: 4%;
@@ -90,18 +69,6 @@ img.showitem {
     margin-top: 1em;
 }
 
-footer {
-    background-color: rgb(220, 220, 220);
-    height: 15em;
-    margin-top: 3%;
-}
-
-.logofooter {
-    max-height: 10em;
-    border-radius: 60%;
-    align-self: center;
-}
-
 .cajaformulario {
     width: 50rem;
     max-height: 40rem;
@@ -110,3 +77,34 @@ footer {
     border-radius: 1rem;
     background-color: rgb(188, 196, 195);
 }
+
+#imgPerfilPagina{
+    max-height: 10em;
+    width: auto;
+    border-radius: 60%;
+}
+
+div#bloque1 {
+    background-color: var(--colorsecundario1);
+    height: 12rem;
+    margin-top: 1rem;
+    margin-bottom: 1em;
+    color:var(--colortexto1)
+}
+div#bloqueRecetas{
+    
+    height: 3rem;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#bloqueRecetas .btn{
+    width: 25%;
+    background-color: var(--colorsecundario1);
+}
+
+#encabezadoOpciones{
+    height: 2rem;
+    color: var(--colortexto1);
+}
+

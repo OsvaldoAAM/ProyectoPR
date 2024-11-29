@@ -4,3 +4,48 @@
 #optionWithoutAccount{
     display: flex;
 }
+
+
+footer {
+    background-color: rgb(220, 220, 220);
+    height: 10em;
+  
+}
+
+.logofooter {
+    max-height: 8em;
+    border-radius: 60%;
+    align-self: center;
+}
+
+.navbar {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.logoNavbar{
+    height: 100%;
+    width: fit-content;
+    border-radius: 100%;
+}
+
+a.navbar-brand {
+    height: 80px;
+}
+
+div.navbar-nav,
+ul.navbar-nav {
+    margin-right: 0%;
+    margin-left: 0%;
+}
+a.nav-link {
+    margin-right: 8px;
+    margin-left: 4px;
+
+}
+
+#imgPerfilNavbar{
+    max-height: 3rem;
+    width: auto;
+    border-radius: 100%;
+}
