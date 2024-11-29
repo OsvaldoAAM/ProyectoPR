@@ -14,8 +14,8 @@
 
     <nav class="navbar navbar-expand-md bg-body-tertiary">
         <div class="container-fluid justify-content-between">
-            <a class="navbar-brand col-2 col-md-1 d-flex justify-content-center" href="Index.html"><img class="logoNavbar"
-                    src="/Imagenes/logo.jpeg" alt="logo">
+            <a class="navbar-brand col-2 col-md-1 d-flex justify-content-center" href="Index.html"><img
+                    class="logoNavbar" src="/Imagenes/logo.jpeg" alt="logo">
             </a>
 
             <form class="d-flex col-8 col-sm-5" role="search">
@@ -64,13 +64,14 @@
                     </li>
                 </ul>
                 <!--Opciones para cuando hay inicio de sesión-->
-                <ul class="navbar-nav  justify-content-center align-items-center"  id="optionWithAccount">
+                <ul class="navbar-nav  justify-content-center align-items-center" id="optionWithAccount">
                     <li class="nav-item" id="leyendaSesionIniciada"></li>
                     <li class="nav-item">
-                        <a href="/HTML/PerfilUsuario.html" class="nav-link"><img src="/Imagenes/perfilDefault.png" alt="imgPerfil" id="imgPerfilNavbar"></a>
+                        <a href="/HTML/PerfilUsuario.html" class="nav-link"><img src="/Imagenes/perfilDefault.png"
+                                alt="imgPerfil" id="imgPerfilNavbar"></a>
                     </li>
                 </ul>
-                
+
             </div>
 
             <button class="navbar-toggler col-12 col-sm-2" type="button" data-bs-toggle="collapse"
@@ -82,40 +83,86 @@
         </div>
     </nav>
     <section>
-        <div class="d-flex justify-content-start container my-4" id="controlRecetaEditarCrear">
-            <h2 class="flex-fill">Crear una Receta</h2>
-            <span>
-                <button class="btn">Cancelar</button>
-                <button class="btn">Enviar</button>    
-            </span>
-        
-        </div>
+
 
         <div class="container">
-           
+            <div class="d-flex justify-content-start  align-items-center my-4" id="controlRecetaEditarCrear">
+                <h2 class="flex-fill">Crear una Receta</h2>
+                <span>
+                    <button class="btn">Cancelar</button>
+                    <button type="submit" class="btn btn-custom">Crear Receta</button>
+                </span>
+
+            </div>
+
             <form id="formReceta" action="#" method="POST" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="nombreReceta">Nombre de la Receta</label>
-                    <input type="text" class="form-control" id="nombreReceta" placeholder="Escribe el nombre de la receta" required>
+                <div class="bloqueEditarCrear1 border  p-3">
+                    <div class="d-flex">
+                        <div class="border d-flex justify-content-center" id="imagenEditarCrearReceta" style="cursor: pointer;">
+                            <img id="imagePreview" class="image-preview" alt="Vista previa de la imagen" src="/Imagenes/recetaDefault.png">
+                            <input type="file" id="imagenReceta" accept="image/*" style="display: none;">
+                        </div>
+                        <div class="form-group flex-fill">
+                            <label for="nombreReceta">Nombre de la Receta</label>
+                            <input type="text" class="form-control" id="nombreReceta"
+                                placeholder="Escribe el nombre de la receta" required>
+
+                            <label for="descripcionReceta">Descripción<nav></nav></label>
+                            <textarea class="form-control" id="descripcionReceta" rows="2"
+                                placeholder="Describe aquí tu receta (max. 200 carácteres)" required></textarea>
+                        </div>
+                    </div>
+                    <div class=" container d-flex flex-fill justify-content-between mt-3" id="contenedorBotones">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle col-2" type="button"
+                            data-bs-toggle="dropdown">
+                            Complejidad
+                        </button>
+                        <ul class="dropdown-menu" id="listaComplejidad">
+                            ...
+                        </ul>
+                        <button class="btn btn-secondary btn-sm dropdown-toggle col-2" type="button"
+                            data-bs-toggle="dropdown">
+                            Tiempo
+                        </button>
+                        <ul class="dropdown-menu " id="listaTiempo">
+                            ...
+                        </ul>
+                        <button class="btn btn-secondary btn-sm dropdown-toggle col-2" type="button"
+                            data-bs-toggle="dropdown">
+                            Tipo
+                        </button>
+                        <ul class="dropdown-menu" id="listaTipo">
+                            ...
+                        </ul>
+                        <button class="btn btn-secondary btn-sm dropdown-toggle col-2" type="button"
+                            data-bs-toggle="dropdown">
+                            Region
+                        </button>
+                        <ul class="dropdown-menu" id="listaRegion">
+                            ...
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="ingredientes">Ingredientes</label>
-                    <textarea class="form-control" id="ingredientes" rows="4" placeholder="Escribe los ingredientes" required></textarea>
+                <div class="border my-4 p-3">
+                    <div class="form-group">
+                        <label class="my-2" for="ingredientes">Ingredientes</label>
+                        <textarea class="form-control" id="ingredientes" rows="4" placeholder="Escribe los ingredientes"
+                            required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="my-2" for="instrucciones">Instrucciones</label>
+                        <textarea class="form-control" id="instrucciones" rows="4"
+                            placeholder="Escribe las instrucciones" required></textarea>
+                    </div>
+
+                    
+
                 </div>
 
-                <div class="form-group">
-                    <label for="instrucciones">Instrucciones</label>
-                    <textarea class="form-control" id="instrucciones" rows="4" placeholder="Escribe las instrucciones" required></textarea>
-                </div>
 
-                <div class="form-group">
-                    <label for="imagenReceta">Imagen de la Receta</label>
-                    <input type="file" class="form-control" id="imagenReceta" accept="image/*">
-                    <img id="imagePreview" class="image-preview" alt="Vista previa de la imagen" style="display:none;">
-                </div>
 
-                <button type="submit" class="btn btn-custom btn-block">Crear Receta</button>
             </form>
 
             <div id="alertMessage" class="alert alert-success" style="display: none;"></div>
@@ -125,7 +172,15 @@
     </section>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+
+    <footer class="d-flex justify-content-center">
+        <img src="/Imagenes/logo.jpeg" alt="" class="logofooter">
+    </footer>
+
+    <script src="/JS/CrearEditarReceta.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
     <script src="/JS/Index.js"></script>
 
 </body>

@@ -113,3 +113,16 @@ div#bloqueRecetas{
     background-color: var(--colorsecundario1);
     margin-left: 2em;
 }
+
+#imagenEditarCrearReceta{
+    height: 10rem;
+    width: 18rem;
+    margin-right: 1rem;
+}
+#imagePreview{
+    height: 9.9rem;
+    width: auto;
+}
+#contenedorBotones .dropdown-menu{
+    padding: 0.5rem;
+}

@@ -110,7 +110,7 @@ app.post('/login', (req, res) => {
           return res.status(400).send('El correo electrónico no está registrado.');
       }
 
-      // Comparar la contraseña proporcionada con el hash almacenado
+     
       const user = results[0];  
 
       bcrypt.compare(contraseña, user.contraseña, (err, isMatch) => {
@@ -142,7 +142,7 @@ app.post('/login', (req, res) => {
 
 
 function verificarToken(req, res, next) {
-  const token = req.headers['authorization']; // El token se envía en el encabezado "Authorization"
+  const token = req.headers['authorization']; 
 
   if (!token) {
     return res.status(403).json({ authenticated: false });
@@ -155,14 +155,14 @@ function verificarToken(req, res, next) {
     }
 
     // Si el token es válido, decodificamos la información y la pasamos al siguiente middleware
-    req.user = decoded; // Los datos del usuario están en decoded (puedes tener el nombre, id, etc.)
-    next(); // Continuamos con la ejecución
+    req.user = decoded; 
+    next(); 
   });
 }
 
 // Ruta protegida para verificar autenticación
 app.get('/autenticacion', verificarToken, (req, res) => {
-  // Si el token es válido, devolvemos la información del usuario
+  
   res.json({ authenticated: true, user: req.user });
 });
 
