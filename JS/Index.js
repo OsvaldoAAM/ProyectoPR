@@ -33,14 +33,14 @@ window.addEventListener('DOMContentLoaded', () => {
   
   // Función para mostrar el navbar cuando el usuario no está autenticado
   function mostrarNavbarNoAutenticado() {
-    document.getElementById('optionWithoutAccount').style.display = 'block';
+    document.getElementById('optionWithoutAccount').style.display = 'flex';
     document.getElementById('optionWithAccount').style.display = 'none';
   }
   
   // Función para mostrar el navbar cuando el usuario está autenticado
   function mostrarNavbarAutenticado(user) {
     document.getElementById('optionWithoutAccount').style.display = 'none';
-    document.getElementById('optionWithAccount').style.display = 'block';
+    document.getElementById('optionWithAccount').style.display = 'flex';
   
     // Mostrar el nombre del usuario o cualquier otra información relevante
     document.getElementById('leyendaSesionIniciada').innerText = `Bienvenido, ${user.nombre}`;

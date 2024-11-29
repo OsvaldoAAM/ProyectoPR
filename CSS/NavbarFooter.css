@@ -1,0 +1,6 @@
+#optionWithAccount{
+    display: none;
+}
+#optionWithoutAccount{
+    display: flex;
+}
