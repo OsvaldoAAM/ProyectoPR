@@ -2,12 +2,14 @@
 const mysql = require('mysql2');
 const express = require('express');
 const path = require('path');
+const multer = require('multer');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const app = express();
 
-// Establece el puerto en el que el servidor escuchará
+const app = express();
+const uploadFolder = 'uploads/images/';
+
 const PORT = process.env.PORT || 3000;
 
 // Configuración de la conexión a MySQL
@@ -17,6 +19,24 @@ const connection = mysql.createConnection({
   password: '1234', //  contraseña de MySQL
   database: 'sitiorecetas' // nombre de la base de datos
 });
+
+
+// Configurar Multer para almacenar archivos
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    
+    cb(null, uploadFolder); // La imagen se guardará en 'uploads/images/'
+  },
+  filename: (req, file, cb) => {
+    // Establecer el nombre del archivo
+    const fileName = Date.now() + path.extname(file.originalname);
+    cb(null, fileName);
+  }
+});
+
+const upload = multer({ storage: storage });
+app.use('/uploads', express.static('uploads'));
+
 
 app.use(cors());
 app.use(express.json());
@@ -35,7 +55,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Metodos HTTPS
 
-
+//Verificación de los usuarios
 app.get('/', (req, res) => {
     res.send('¡El servidor está funcionando.');
   });
@@ -97,15 +117,12 @@ app.post('/login', (req, res) => {
       return res.status(400).send('Por favor, ingrese ambos campos (email y contraseña).');
   }
 
-  // Buscar el usuario por el email
   const query = 'SELECT * FROM usuarios WHERE email = ?';
   connection.query(query, [email], (err, results) => {
       if (err) {
           console.error('Error en la consulta a la base de datos:', err);
           return res.status(500).send('Error en el servidor');
       }
-
-      // Verificar si el usuario existe
       if (results.length === 0) {
           return res.status(400).send('El correo electrónico no está registrado.');
       }
@@ -122,8 +139,6 @@ app.post('/login', (req, res) => {
         if (!isMatch) {
             return res.status(400).send('La contraseña es incorrecta.');
         }
-
-        // Generar un token JWT (ahora incluyendo el nombre del usuario)
         const token = jwt.sign(
             { 
                 id: user.id, 
@@ -139,6 +154,28 @@ app.post('/login', (req, res) => {
     });
   });
 });
+
+
+//Ruta para subir imagenes al servidor
+app.post('/upload', upload.single('imagenReceta'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send('No se ha subido ninguna imagen.');
+  }
+
+  // Enviar la ruta del archivo cargado como respuesta
+  res.send({
+    message: 'Imagen subida exitosamente',
+    filePath: `/uploads/images/${req.file.filename}` // Devolver la ruta de la imagen
+  });
+});
+
+
+// Ruta protegida para verificar autenticación
+app.get('/autenticacion', verificarToken, (req, res) => {
+  
+  res.json({ authenticated: true, user: req.user });
+});
+
 
 
 function verificarToken(req, res, next) {
@@ -160,11 +197,6 @@ function verificarToken(req, res, next) {
   });
 }
 
-// Ruta protegida para verificar autenticación
-app.get('/autenticacion', verificarToken, (req, res) => {
-  
-  res.json({ authenticated: true, user: req.user });
-});
 
 
 
